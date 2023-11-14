@@ -5,6 +5,7 @@ const https = require('https');
 const app = express()
 const port = 3000
 const client = require('@mailchimp/mailchimp_marketing'); // Import the Mailchimp library
+const config = require('./config');
 
 app.use(bodyParser.urlencoded({extended: true}))
 
@@ -13,7 +14,7 @@ app.use(express.static("public")) //put css file and images in public folder
 
 // Set up Mailchimp API configuration
 client.setConfig({
-    apiKey: "bb3e4a4aade17d60a6fec94ff8a78bb5-us21",
+    apiKey: config.apiKey,
     server: "us21",
   });
 
@@ -33,7 +34,7 @@ app.post("/", async (req, res) => {
     console.log(lastName);
     console.log(emailID);
 
-    res.send("Thanks for signing up!")
+    res.sendFile(__dirname + "/success.html");
 
     try {
         // Add subscriber to the Mailchimp list

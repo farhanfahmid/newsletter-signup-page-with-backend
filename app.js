@@ -58,33 +58,6 @@ app.post("/", async (req, res) => {
 
 })
 
-
-
-// app.get("/", (req, res) => {
-//     res.send("Server running")
-// })
-
-
-// API Key
-// bb3e4a4aade17d60a6fec94ff8a78bb5-us21
-
-
-// Audience ID 
-// 71f1a874a8
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
   })

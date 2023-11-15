@@ -18,7 +18,8 @@ client.setConfig({
     server: "us21",
   });
 
-app.get("/", (req, res) => {
+
+  app.get("/", (req, res) => {
     res.sendFile(__dirname + "/signup.html")
 })
 
@@ -34,7 +35,17 @@ app.post("/", async (req, res) => {
     console.log(lastName);
     console.log(emailID);
 
+
+    // Validate email format
+  if (!isValidEmail(emailID)) {
+    res.sendFile(__dirname + "/failure.html");
+  }
+
+  else{
     res.sendFile(__dirname + "/success.html");
+  }
+
+    
 
     try {
         // Add subscriber to the Mailchimp list
@@ -48,16 +59,29 @@ app.post("/", async (req, res) => {
         });
     
         console.log("Subscriber added to Mailchimp:", response);
-        res.send("Thanks for signing up!");
+        
       } catch (error) {
         console.error("Error adding subscriber to Mailchimp:", error);
-        res.status(500).send("Internal Server Error");
+        res.status(!200).send("Internal Server Error");
       }
 
 
 
 })
 
+app.post("/failure", (req, res) => { //on clicking try again button, user is redirected to signup page
+  res.redirect("/")
+})
+
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
   })
+
+
+
+// Function to validate email format
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}

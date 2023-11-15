@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/farhanfahmid/newsletter-signup-page-with-backend/issues"
   },
-  "homepage": "https://github.com/farhanfahmid/newsletter-signup-page-with-backend#readme"
+  "homepage": "https://github.com/farhanfahmid/newsletter-signup-page-with-backend#readme",
+  "devDependencies": {}
 }
